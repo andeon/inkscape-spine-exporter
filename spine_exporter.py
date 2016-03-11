@@ -239,7 +239,7 @@ class SpineExporter(inkex.Effect):
 			label = layer.attrib.get(INKSCAPE_LABEL, id)
 
 			if self.options.ignore_hidden:
-				style = parse_css_style(layer.attrib.get("style", ""))
+				style = parse_css_style(layer.attrib.get("style", "display:none"))
 				if style.get("display") == "none":
 					continue
 
