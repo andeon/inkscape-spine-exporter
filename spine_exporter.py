@@ -23,6 +23,9 @@ def run_inkscape(args):
 def parse_css_style(style):
 	ret = {}
 	for directive in style.split(";"):
+		directive = directive.strip()
+		if not directive:
+			continue
 		k, v = directive.split(":")
 		ret[k.lower()] = v.lower()
 	return ret
@@ -239,7 +242,7 @@ class SpineExporter(inkex.Effect):
 			label = layer.attrib.get(INKSCAPE_LABEL, id)
 
 			if self.options.ignore_hidden:
-				style = parse_css_style(layer.attrib.get("style", "display:none"))
+				style = parse_css_style(layer.attrib.get("style", ""))
 				if style.get("display") == "none":
 					continue
 
